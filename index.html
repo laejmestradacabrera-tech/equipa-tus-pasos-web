@@ -1,1 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipa Tus Pasos | Calzado B2B</title>
+    
+    <!-- Google Fonts para emular la tipografía de la imagen -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS vía CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#111827',     /* Fondo oscuro del Hero */
+                            yellow: '#fbbf24',   /* Amarillo "paso a paso" */
+                            blue: '#38bdf8',     /* Acento azul para la línea médica */
+                            gray: '#9ca3af'      /* Gris para subtítulos */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
+    <style>
+        /* Animación suave para las tarjetas */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased font-sans">
+
+    <!-- HERO SECTION (Replicando la estética de la imagen) -->
+    <div class="px-4 py-8 md:px-8 max-w-7xl mx-auto">
+        <div class="bg-brand-dark rounded-2xl md:rounded-[32px] px-6 py-16 md:py-24 text-center shadow-xl">
+            
+            <h1 class="text-white text-4xl md:text-6xl font-black tracking-tight mb-6 leading-tight">
+                Equipamos a tu empresa <br class="hidden md:block" />
+                <span class="text-brand-yellow">paso a paso</span>
+            </h1>
+            
+            <p class="text-brand-gray text-base md:text-xl max-w-3xl mx-auto leading-relaxed font-medium">
+                Distribución mayorista especializada en calzado industrial y de servicio. Atención corporativa con cobertura inmediata y entregas estratégicas en toda la Zona Occidente.
+            </p>
+            
+        </div>
+    </div>
+
+    <!-- SECCIÓN DE VITRINA DUAL -->
+    <div class="px-4 py-12 md:px-8 max-w-7xl mx-auto">
+        
+        <h2 class="text-3xl md:text-4xl font-black text-center text-gray-900 mb-12">
+            Nuestras Líneas de Especialidad
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            
+            <!-- TARJETA 1: LÍNEA INDUSTRIAL -->
+            <div class="bg-white rounded-[24px] p-8 md:p-10 border border-gray-100 shadow-lg card-hover relative overflow-hidden flex flex-col h-full">
+                <!-- Borde superior decorativo -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-gray-200"></div>
+                
+                <div class="flex-grow">
+                    <div class="text-6xl mb-6 text-center">👷‍♂️</div>
+                    
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">
+                        Línea Industrial y Seguridad
+                    </h3>
+                    
+                    <p class="text-gray-600 mb-6 text-center leading-relaxed">
+                        Calzado robusto diseñado para soportar las jornadas más exigentes en fábricas, almacenes y construcción.
+                    </p>
+                    
+                    <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Casquillo de protección normado.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Suelas antiderrapantes y resistentes a aceites.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Alta durabilidad para jornadas de 8+ horas.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <button class="w-full bg-brand-dark hover:bg-gray-800 text-white font-bold py-4 px-6 rounded-xl transition duration-200 mt-auto">
+                    Solicitar Catálogo Industrial
+                </button>
+            </div>
+
+            <!-- TARJETA 2: LÍNEA CLÍNICA -->
+            <div class="bg-white rounded-[24px] p-8 md:p-10 border border-gray-100 shadow-lg card-hover relative overflow-hidden flex flex-col h-full">
+                <!-- Borde superior decorativo azul -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-brand-blue"></div>
+                
+                <div class="flex-grow">
+                    <div class="text-6xl mb-6 text-center">👩‍⚕️</div>
+                    
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">
+                        Línea Clínica y de Servicio
+                    </h3>
+                    
+                    <p class="text-gray-600 mb-6 text-center leading-relaxed">
+                        Ergonomía superior para profesionales de la salud, laboratorios, clínicas y personal en constante movimiento.
+                    </p>
+                    
+                    <ul class="space-y-3 mb-8 text-sm text-gray-600">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-brand-blue mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Diseño ultra ligero y anatómico.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-brand-blue mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Pieles suaves y de fácil limpieza.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-brand-blue mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Confort extremo para evitar fatiga en guardias.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <button class="w-full border-2 border-brand-dark text-brand-dark hover:bg-gray-50 font-bold py-4 px-6 rounded-xl transition duration-200 mt-auto">
+                    Solicitar Catálogo Clínico
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
