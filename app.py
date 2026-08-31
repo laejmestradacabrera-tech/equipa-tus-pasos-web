@@ -21,8 +21,8 @@ st.set_page_config(
 # ============================================================
 st.markdown("""
 <div style="display: none;" aria-hidden="true">
-    <h1>Distribuidor Mayorista Calzado Industrial Flexi PRO en Guadalajara y Jalisco</h1>
-    <p>Equipa Tus Pasos es el proveedor líder B2B de botas de seguridad industrial, calzado clínico y zapatos de trabajo Flexi PRO en la Zona Occidente, Tlaquepaque y Guadalajara. Cumplimiento estricto con NOM-113-STPS-2009 y NOM-017-STPS-2024. Calzado dieléctrico, suela anti-slip, casco de policarbonato y tecnología BIOFORM. Venta por volumen para empresas. Modelos 142002, 141902, 424703 y 424902 disponibles para entrega inmediata. Cotizaciones B2B.</p>
+<h1>Distribuidor Mayorista Calzado Industrial Flexi PRO en Guadalajara y Jalisco</h1>
+<p>Equipa Tus Pasos es el proveedor líder B2B de botas de seguridad industrial, calzado clínico y zapatos de trabajo Flexi PRO en la Zona Occidente, Tlaquepaque y Guadalajara. Cumplimiento estricto con NOM-113-STPS-2009 y NOM-017-STPS-2024. Calzado dieléctrico, suela anti-slip, casco de policarbonato y tecnología BIOFORM. Venta por volumen para empresas. Modelos 142002, 141902, 424703 y 424902 disponibles para entrega inmediata. Cotizaciones B2B.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -217,7 +217,6 @@ def seleccionar_linea(linea):
     st.session_state["linea"] = linea
     st.session_state["mostrar_formulario"] = True
 
-
 # ============================================================
 # HERO Y BRANDING FLEXI
 # ============================================================
@@ -380,44 +379,35 @@ if st.session_state.get("mostrar_formulario", False):
         st.markdown("---")
 
     # Contacto Directo Cero Fricción (Atención y Tienda)
-    # NOTA: El HTML está alineado a la izquierda intencionalmente para evitar errores de renderizado en Streamlit
+    # NOTA: Todo el código HTML está pegado a la izquierda para que Streamlit no lo convierta en bloque de código.
     st.markdown(
-"""
-<div style="background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 25px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-    <h3 style="color: #111827; margin-bottom: 10px; font-weight: 900;">¿Prefieres atención directa?</h3>
-    <p style="color: #64748b; margin-bottom: 20px;">Si deseas omitir el formulario, comunícate a nuestras líneas corporativas:</p>
-    
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-        <!-- Tarjeta Atención Especializada -->
-        <div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0; min-width: 250px;">
-            <p style="margin: 0; color: #64748b; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Atención Especializada</p>
-            <p style="margin: 5px 0 0 0; color: #b91c1c; font-size: 1.45rem; font-weight: 900;">(33) XXXX-XXXX</p>
-            <p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">Directo / WhatsApp</p>
-        </div>
-        
-        <!-- Tarjeta Administración y Tienda -->
-        <div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0; min-width: 250px;">
-            <p style="margin: 0; color: #64748b; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Administración y Tienda</p>
-            <p style="margin: 5px 0 0 0; color: #111827; font-size: 1.45rem; font-weight: 900;">(33) XXXX-XXXX</p>
-            <p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">Operaciones y Sucursal</p>
-        </div>
-    </div>
+"""<div style="background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 25px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+<h3 style="color: #111827; margin-bottom: 10px; font-weight: 900;">¿Prefieres atención directa?</h3>
+<p style="color: #64748b; margin-bottom: 20px;">Si deseas omitir el formulario, comunícate a nuestras líneas corporativas:</p>
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+<div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0; min-width: 250px;">
+<p style="margin: 0; color: #64748b; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Atención Especializada</p>
+<p style="margin: 5px 0 0 0; color: #b91c1c; font-size: 1.45rem; font-weight: 900;">(33) XXXX-XXXX</p>
+<p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">Directo / WhatsApp</p>
 </div>
-""",
+<div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0; min-width: 250px;">
+<p style="margin: 0; color: #64748b; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Administración y Tienda</p>
+<p style="margin: 5px 0 0 0; color: #111827; font-size: 1.45rem; font-weight: 900;">(33) XXXX-XXXX</p>
+<p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">Operaciones y Sucursal</p>
+</div>
+</div>
+</div>""",
         unsafe_allow_html=True
     )
 
     st.markdown(
-        f"""
-        <div class="form-box">
-            <div class="form-title">Solicita información comercial</div>
-            <div class="form-subtitle">
-                Línea seleccionada: <strong>{linea}</strong>
-                <br>
-                Completa tus datos y un especialista corporativo te contactará a la brevedad.
-            </div>
-        </div>
-        """,
+f"""<div class="form-box">
+<div class="form-title">Solicita información comercial</div>
+<div class="form-subtitle">
+Línea seleccionada: <strong>{linea}</strong><br>
+Completa tus datos y un especialista corporativo te contactará a la brevedad.
+</div>
+</div>""",
         unsafe_allow_html=True
     )
 
@@ -559,26 +549,16 @@ if st.session_state.get("solicitud_enviada", False):
         "Solicitud registrada correctamente. Un especialista de Equipa Tus Pasos te contactará a la brevedad."
     )
     
-    # HTML alineado a la izquierda para evitar renderizado como código
     st.markdown(
-"""
-<div class="summary">
-    <strong>Resumen de tu solicitud corporativa</strong><br><br>
-    <b>Empresa:</b> {empresa}<br>
-    <b>Contacto:</b> {contacto}<br>
-    <b>Línea de Interés:</b> {linea}<br>
-    <b>Requerimiento:</b> {necesidad}<br>
-    <b>Volumen Estimado:</b> {volumen}<br>
-    <b>Ubicación:</b> {ciudad}
-</div>
-""".format(
-    empresa=datos["empresa"],
-    contacto=datos["contacto"],
-    linea=datos["linea"],
-    necesidad=datos["necesidad"],
-    volumen=datos["volumen"],
-    ciudad=datos["ciudad"] or "No indicada"
-),
+f"""<div class="summary">
+<strong>Resumen de tu solicitud corporativa</strong><br><br>
+<b>Empresa:</b> {datos["empresa"]}<br>
+<b>Contacto:</b> {datos["contacto"]}<br>
+<b>Línea de Interés:</b> {datos["linea"]}<br>
+<b>Requerimiento:</b> {datos["necesidad"]}<br>
+<b>Volumen Estimado:</b> {datos["volumen"]}<br>
+<b>Ubicación:</b> {datos["ciudad"] or "No indicada"}
+</div>""",
         unsafe_allow_html=True
     )
     
