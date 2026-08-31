@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 from pathlib import Path
+import base64
 
 # ============================================================
 # EQUIPA TUS PASOS | PORTAL B2B
@@ -211,6 +212,15 @@ def seleccionar_linea(linea):
 # HERO Y BRANDING
 # ============================================================
 
+col_logo1, col_logo2, col_logo3 = st.columns([1, 2, 1])
+with col_logo2:
+    # Instrucción: Sube una imagen llamada 'logo_flexi.png' a tu repositorio
+    try:
+        st.image("logo_flexi.png", use_container_width=True)
+    except Exception:
+        # Texto temporal en guinda mientras subes la imagen
+        st.markdown("<h2 style='text-align: center; color: #b91c1c; font-weight: 900; font-style: italic; letter-spacing: 2px; margin-bottom: 20px;'>FLEXI PRO</h2>", unsafe_allow_html=True)
+
 st.markdown("""
 <div class="hero">
     <div class="hero-title">
@@ -224,9 +234,29 @@ st.markdown("""
     </div>
 </div>
 <div class="brand-banner">
-    Distribuidor de soluciones corporativas con el respaldo de <span>FLEXI PRO</span>
+    Distribuidor de soluciones corporativas con el respaldo de <span>FLEXI PRO</span><br>
+    <span style="font-size: 0.85rem; font-weight: 500; text-transform: none; margin-top: 8px; display: inline-block; color: #111827;">
+        Capacidad de surtimiento garantizada para cualquier modelo de la <b>Colección Otoño-Invierno</b> en los volúmenes que tu empresa requiera.
+    </span>
 </div>
 """, unsafe_allow_html=True)
+
+# ============================================================
+# CONSULTA DE CATÁLOGO COMPLETO
+# ============================================================
+
+with st.expander("CONSULTAR CATÁLOGO COMPLETO OI", expanded=False):
+    try:
+        with open("catalogo_flexi.pdf", "rb") as pdf_file:
+            base64_pdf = base64.b64encode(pdf_file.read()).decode('utf-8')
+        
+        # Incrustar el PDF directamente en la página web con visor de altura 800px
+        pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800" type="application/pdf"></iframe>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
+    except Exception:
+        st.info("El catálogo virtual se está actualizando. Solicítalo directamente vía WhatsApp o en el formulario inferior.")
+
+st.markdown("<br>", unsafe_allow_html=True)
 
 # ============================================================
 # LÍNEAS DE ESPECIALIDAD
@@ -311,25 +341,25 @@ if st.session_state.get("mostrar_formulario", False):
         
         with cat1:
             st.image("Industrial 1.png", use_container_width=True)
-            st.markdown("**Mod. 142002 | Dama**")
-            st.caption("PROT: PP+D | Flexi PRO")
-            
-        with cat2:
-            st.image("Industrial 2.png", use_container_width=True)
-            st.markdown("**Mod. 141902 | Dama**")
-            st.caption("PROT: PP+D | Flexi PRO")
-            
-        with cat3:
-            st.image("Industrial 3.png", use_container_width=True)
-            st.markdown("**Mod. 424703 | Caballero**")
-            st.caption("PROT: PP+D | Flexi PRO")
-            
-        with cat4:
-            st.image("Industrial 4.png", use_container_width=True)
-            st.markdown("**Mod. 424902 | Caballero**")
-            st.caption("PROT: PP+D | Flexi PRO")
+            with cat4:
+                st.image("Industrial 4.png", use_container_width=True)
+                st.markdown("**Mod. 424902 | Caballero**")
+                st.caption("PROT: PP+D | Flexi PRO")
         
         st.markdown("---")
+
+    st.markdown(
+        """
+        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 25px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h3 style="color: #111827; margin-bottom: 10px;">¿Prefieres atención inmediata y directa?</h3>
+            <p style="color: #64748b; margin-bottom: 20px;">Si deseas omitir el formulario, envíanos un mensaje y un especialista corporativo te atenderá en este momento.</p>
+            <a href="https://wa.me/5213300000000" target="_blank" style="background-color: #25d366; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 900; display: inline-block;">
+                💬 CONTACTAR POR WHATSAPP
+            </a>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown(
         f"""
