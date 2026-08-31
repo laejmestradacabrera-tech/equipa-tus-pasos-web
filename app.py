@@ -271,7 +271,7 @@ with col2:
         seleccionar_linea("Clínica y de Servicio")
 
 # ============================================================
-# FORMULARIO
+# FORMULARIO Y CATÁLOGO DINÁMICO
 # ============================================================
 
 if st.session_state.get("mostrar_formulario", False):
@@ -279,6 +279,42 @@ if st.session_state.get("mostrar_formulario", False):
     st.markdown("---")
 
     linea = st.session_state.get("linea", "No seleccionada")
+
+    # Inyección de Catálogo Industrial
+    if linea == "Industrial y Seguridad":
+        st.markdown("## 🛡️ Ingeniería y Protección Total para tu Plantilla")
+        st.markdown("""
+        *Cumplimiento estricto con **NOM-113-STPS-2009** y **NOM-017-STPS-2024**.*
+        * **Protección Dieléctrica:** Aislante especializado de alta fiabilidad.
+        * **Casco Policarbonato+ABS:** 200 Joules de resistencia, ligero y anticorrosivo.
+        * **Tecnología Anti-slip & BIOFORM:** Tracción extrema y ergonomía para reducir fatiga.
+        """)
+        
+        st.markdown("### Modelos de Entrega Inmediata")
+        
+        cat1, cat2, cat3, cat4 = st.columns(4)
+        
+        with cat1:
+            st.image("Industrial 1.png", use_container_width=True)
+            st.markdown("**Mod. 142002 | Dama**")
+            st.caption("PROT: PP+D")
+            
+        with cat2:
+            st.image("Industrial 2.png", use_container_width=True)
+            st.markdown("**Mod. 141902 | Dama**")
+            st.caption("PROT: PP+D")
+            
+        with cat3:
+            st.image("Industrial 3.png", use_container_width=True)
+            st.markdown("**Mod. 424703 | Caballero**")
+            st.caption("PROT: PP+D")
+            
+        with cat4:
+            st.image("Industrial 4.png", use_container_width=True)
+            st.markdown("**Mod. 424902 | Caballero**")
+            st.caption("PROT: PP+D")
+        
+        st.markdown("---")
 
     st.markdown(
         f"""
