@@ -6,14 +6,25 @@ import base64
 
 # ============================================================
 # EQUIPA TUS PASOS | PORTAL B2B
-# VERSIÓN 1.1 — INTEGRACIÓN IDENTIDAD FLEXI
+# VERSIÓN 2.0 — SEO Y CATÁLOGO INTEGRADO
 # ============================================================
 
+# Optimización SEO #1: Título de página con palabras clave de alto impacto
 st.set_page_config(
-    page_title="Equipa Tus Pasos | B2B",
+    page_title="Calzado Industrial Flexi PRO | Equipa Tus Pasos B2B",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
+
+# ============================================================
+# INYECCIÓN SEO (Invisible para el usuario, visible para Google)
+# ============================================================
+st.markdown("""
+<div style="display: none;" aria-hidden="true">
+    <h1>Distribuidor Mayorista Calzado Industrial Flexi PRO en Guadalajara y Jalisco</h1>
+    <p>Equipa Tus Pasos es el proveedor líder B2B de botas de seguridad industrial, calzado clínico y zapatos de trabajo Flexi PRO en la Zona Occidente, Tlaquepaque y Guadalajara. Cumplimiento estricto con NOM-113-STPS-2009 y NOM-017-STPS-2024. Calzado dieléctrico, suela anti-slip, casco de policarbonato y tecnología BIOFORM. Venta por volumen para empresas. Modelos 142002, 141902, 424703 y 424902 disponibles para entrega inmediata. Cotizaciones B2B.</p>
+</div>
+""", unsafe_allow_html=True)
 
 # ============================================================
 # CONFIGURACIÓN
@@ -22,7 +33,7 @@ st.set_page_config(
 ARCHIVO_SOLICITUDES = Path("solicitudes_b2b.csv")
 
 # ============================================================
-# CSS
+# CSS CORPORATIVO (Sin emojis, tonos institucionales)
 # ============================================================
 
 st.markdown("""
@@ -56,7 +67,7 @@ st.markdown("""
     }
 
     .hero-highlight {
-        color: #b91c1c; /* Tono guinda/rojo inspirado en Flexi PRO */
+        color: #b91c1c; /* Tono guinda Flexi PRO */
     }
 
     .hero-subtitle {
@@ -110,11 +121,11 @@ st.markdown("""
     }
 
     .industrial {
-        border-top: 5px solid #b91c1c; /* Guinda Flexi PRO */
+        border-top: 5px solid #b91c1c;
     }
 
     .clinical {
-        border-top: 5px solid #0369a1; /* Azul corporativo médico */
+        border-top: 5px solid #0369a1;
     }
 
     .card-title {
@@ -209,16 +220,14 @@ def seleccionar_linea(linea):
 
 
 # ============================================================
-# HERO Y BRANDING
+# HERO Y BRANDING FLEXI
 # ============================================================
 
 col_logo1, col_logo2, col_logo3 = st.columns([1, 2, 1])
 with col_logo2:
-    # Instrucción: Sube una imagen llamada 'logo_flexi.png' a tu repositorio
     try:
         st.image("logo_flexi.png", use_container_width=True)
     except Exception:
-        # Texto temporal en guinda mientras subes la imagen
         st.markdown("<h2 style='text-align: center; color: #b91c1c; font-weight: 900; font-style: italic; letter-spacing: 2px; margin-bottom: 20px;'>FLEXI PRO</h2>", unsafe_allow_html=True)
 
 st.markdown("""
@@ -242,7 +251,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================================
-# CONSULTA DE CATÁLOGO COMPLETO
+# CONSULTA DE CATÁLOGO COMPLETO (Visor PDF incrustado)
 # ============================================================
 
 with st.expander("CONSULTAR CATÁLOGO COMPLETO OI", expanded=False):
@@ -250,7 +259,6 @@ with st.expander("CONSULTAR CATÁLOGO COMPLETO OI", expanded=False):
         with open("catalogo_flexi.pdf", "rb") as pdf_file:
             base64_pdf = base64.b64encode(pdf_file.read()).decode('utf-8')
         
-        # Incrustar el PDF directamente en la página web con visor de altura 800px
         pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
     except Exception:
@@ -340,21 +348,47 @@ if st.session_state.get("mostrar_formulario", False):
         cat1, cat2, cat3, cat4 = st.columns(4)
         
         with cat1:
-            st.image("Industrial 1.png", use_container_width=True)
-            with cat4:
+            try:
+                st.image("Industrial 1.png", use_container_width=True)
+            except Exception:
+                st.info("Imagen no disponible")
+            st.markdown("**Mod. 142002 | Dama**")
+            st.caption("PROT: PP+D | Flexi PRO")
+            
+        with cat2:
+            try:
+                st.image("Industrial 2.png", use_container_width=True)
+            except Exception:
+                st.info("Imagen no disponible")
+            st.markdown("**Mod. 141902 | Dama**")
+            st.caption("PROT: PP+D | Flexi PRO")
+            
+        with cat3:
+            try:
+                st.image("Industrial 3.png", use_container_width=True)
+            except Exception:
+                st.info("Imagen no disponible")
+            st.markdown("**Mod. 424703 | Caballero**")
+            st.caption("PROT: PP+D | Flexi PRO")
+            
+        with cat4:
+            try:
                 st.image("Industrial 4.png", use_container_width=True)
-                st.markdown("**Mod. 424902 | Caballero**")
-                st.caption("PROT: PP+D | Flexi PRO")
+            except Exception:
+                st.info("Imagen no disponible")
+            st.markdown("**Mod. 424902 | Caballero**")
+            st.caption("PROT: PP+D | Flexi PRO")
         
         st.markdown("---")
 
+    # Botón de Contacto Rápido (WhatsApp)
     st.markdown(
         """
         <div style="background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 25px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
             <h3 style="color: #111827; margin-bottom: 10px;">¿Prefieres atención inmediata y directa?</h3>
             <p style="color: #64748b; margin-bottom: 20px;">Si deseas omitir el formulario, envíanos un mensaje y un especialista corporativo te atenderá en este momento.</p>
             <a href="https://wa.me/5213300000000" target="_blank" style="background-color: #25d366; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 900; display: inline-block;">
-                💬 CONTACTAR POR WHATSAPP
+                CONTACTAR POR WHATSAPP
             </a>
         </div>
         """,
