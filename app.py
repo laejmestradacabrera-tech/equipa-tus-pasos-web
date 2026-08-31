@@ -392,7 +392,7 @@ if st.session_state.get("mostrar_formulario", False):
 </div>
 <div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0; min-width: 250px;">
 <p style="margin: 0; color: #64748b; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Administración y Tienda</p>
-<p style="margin: 5px 0 0 0; color: #111827; font-size: 1.45rem; font-weight: 900;">(33) XXXX-XXXX</p>
+<p style="margin: 5px 0 0 0; color: #111827; font-size: 1.45rem; font-weight: 900;">(33) 3686-7935</p>
 <p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">Operaciones y Sucursal</p>
 </div>
 </div>
