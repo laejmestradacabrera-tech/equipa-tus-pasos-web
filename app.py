@@ -5,7 +5,7 @@ from pathlib import Path
 
 # ============================================================
 # EQUIPA TUS PASOS | PORTAL B2B
-# VERSIÓN 1.0 — CAPTACIÓN COMERCIAL
+# VERSIÓN 1.1 — INTEGRACIÓN IDENTIDAD FLEXI
 # ============================================================
 
 st.set_page_config(
@@ -37,13 +37,13 @@ st.markdown("""
     }
 
     .hero {
-        background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
         border-radius: 24px;
-        padding: 58px 35px;
+        padding: 58px 35px 40px 35px;
         text-align: center;
         color: white;
         box-shadow: 0 12px 30px rgba(0,0,0,.14);
-        margin-bottom: 35px;
+        margin-bottom: 15px;
     }
 
     .hero-title {
@@ -55,7 +55,7 @@ st.markdown("""
     }
 
     .hero-highlight {
-        color: #fbbf24;
+        color: #b91c1c; /* Tono guinda/rojo inspirado en Flexi PRO */
     }
 
     .hero-subtitle {
@@ -64,6 +64,25 @@ st.markdown("""
         color: #cbd5e1;
         font-size: 1.08rem;
         line-height: 1.65;
+    }
+    
+    .brand-banner {
+        background-color: #f1f5f9;
+        color: #475569;
+        text-align: center;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 35px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        border: 1px solid #e2e8f0;
+    }
+    
+    .brand-banner span {
+        color: #b91c1c;
+        font-weight: 900;
     }
 
     .section-title {
@@ -90,16 +109,11 @@ st.markdown("""
     }
 
     .industrial {
-        border-top: 5px solid #111827;
+        border-top: 5px solid #b91c1c; /* Guinda Flexi PRO */
     }
 
     .clinical {
-        border-top: 5px solid #38bdf8;
-    }
-
-    .card-icon {
-        font-size: 3rem;
-        margin-bottom: 12px;
+        border-top: 5px solid #0369a1; /* Azul corporativo médico */
     }
 
     .card-title {
@@ -150,7 +164,7 @@ st.markdown("""
 
     .summary {
         background: #f8fafc;
-        border-left: 4px solid #fbbf24;
+        border-left: 4px solid #b91c1c;
         padding: 18px;
         border-radius: 12px;
         margin-top: 20px;
@@ -194,7 +208,7 @@ def seleccionar_linea(linea):
 
 
 # ============================================================
-# HERO
+# HERO Y BRANDING
 # ============================================================
 
 st.markdown("""
@@ -204,10 +218,13 @@ st.markdown("""
         <span class="hero-highlight">paso a paso</span>
     </div>
     <div class="hero-subtitle">
-        Distribución mayorista especializada en calzado industrial y de servicio.
-        Atención corporativa, cobertura en Zona Occidente y soluciones de calzado
-        para las necesidades de tu empresa.
+        Lleva la reconocida comodidad y tecnología de Flexi a tu entorno laboral. 
+        Distribución mayorista especializada en calzado corporativo para la Zona Occidente, 
+        asegurando protección certificada y confort absoluto para tu plantilla.
     </div>
+</div>
+<div class="brand-banner">
+    Distribuidor de soluciones corporativas con el respaldo de <span>FLEXI PRO</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -225,20 +242,20 @@ col1, col2 = st.columns(2, gap="large")
 with col1:
     st.markdown("""
     <div class="catalog-card industrial">
-        <div class="card-title">Línea Industrial y Seguridad</div>
+        <div class="card-title">Línea Flexi PRO Industrial</div>
         <div class="card-text">
-            Calzado diseñado para ambientes de trabajo exigentes,
-            con enfoque en protección, durabilidad y confort.
+            La comodidad superior de Flexi, blindada para entornos exigentes. 
+            Calzado certificado que tu personal realmente querrá utilizar durante toda su jornada.
         </div>
-        <div class="benefit"><span>✓</span> Opciones con protección en puntera.</div>
-        <div class="benefit"><span>✓</span> Suelas antiderrapantes.</div>
-        <div class="benefit"><span>✓</span> Opciones resistentes a diferentes ambientes de trabajo.</div>
-        <div class="benefit"><span>✓</span> Modelos para jornadas prolongadas.</div>
+        <div class="benefit"><span>✓</span> Tecnología ergonómica BIOFORM de Flexi.</div>
+        <div class="benefit"><span>✓</span> Cumplimiento estricto de la NOM-113-STPS.</div>
+        <div class="benefit"><span>✓</span> Casco de Policarbonato ultraligero y dieléctrico.</div>
+        <div class="benefit"><span>✓</span> Suelas Anti-slip de máxima tracción.</div>
     </div>
     """, unsafe_allow_html=True)
 
     if st.button(
-        "Solicitar Catálogo Industrial",
+        "Ver Catálogo Flexi PRO Industrial",
         key="btn_industrial",
         use_container_width=True,
         type="primary"
@@ -250,25 +267,25 @@ with col2:
     <div class="catalog-card clinical">
         <div class="card-title">Línea Clínica y de Servicio</div>
         <div class="card-text">
-            Soluciones de calzado enfocadas en comodidad, ligereza
-            y funcionalidad para profesionales en constante movimiento.
+            Soluciones de calzado enfocadas en comodidad térmica, ligereza
+            y funcionalidad para profesionales de la salud en constante movimiento.
         </div>
-        <div class="benefit"><span>✓</span> Diseños ligeros y anatómicos.</div>
-        <div class="benefit"><span>✓</span> Materiales de fácil limpieza en modelos seleccionados.</div>
-        <div class="benefit"><span>✓</span> Opciones con absorción de impacto.</div>
-        <div class="benefit"><span>✓</span> Confort para jornadas prolongadas.</div>
+        <div class="benefit"><span>✓</span> Soporte anatómico característico de Flexi.</div>
+        <div class="benefit"><span>✓</span> Materiales premium de fácil limpieza.</div>
+        <div class="benefit"><span>✓</span> Absorción de impacto en cada paso.</div>
+        <div class="benefit"><span>✓</span> Diseñado para guardias y jornadas prolongadas.</div>
     </div>
     """, unsafe_allow_html=True)
 
     if st.button(
-        "Solicitar Catálogo Clínico",
+        "Ver Catálogo Clínico",
         key="btn_clinical",
         use_container_width=True
     ):
         seleccionar_linea("Clínica y de Servicio")
 
 # ============================================================
-# FORMULARIO Y CATÁLOGO DINÁMICO
+# CATÁLOGO DINÁMICO Y FORMULARIO
 # ============================================================
 
 if st.session_state.get("mostrar_formulario", False):
@@ -277,14 +294,15 @@ if st.session_state.get("mostrar_formulario", False):
 
     linea = st.session_state.get("linea", "No seleccionada")
 
-    # Inyección de Catálogo Industrial
+    # Inyección de Catálogo Flexi PRO Industrial
     if linea == "Industrial y Seguridad":
-        st.markdown("## Ingeniería y Protección Total para tu Plantilla")
+        st.markdown("## Ingeniería Flexi PRO para tu Plantilla")
         st.markdown("""
-        *Cumplimiento estricto con **NOM-113-STPS-2009** y **NOM-017-STPS-2024**.*
-        * **Protección Dieléctrica:** Aislante especializado de alta fiabilidad.
-        * **Casco Policarbonato+ABS:** 200 Joules de resistencia, ligero y anticorrosivo.
-        * **Tecnología Anti-slip & BIOFORM:** Tracción extrema y ergonomía para reducir fatiga.
+        *El aliado estratégico para la seguridad industrial. Fabricado con materiales de calidad superior.*
+        * **Cumplimiento Legal:** Certificación oficial **NOM-113-STPS-2009** y **NOM-017-STPS-2024**.
+        * **Protección Dieléctrica (PP+D):** Aislante especializado de alta fiabilidad en entornos de riesgo.
+        * **Casco Policarbonato+ABS:** 200 Joules de resistencia, ligero, anticorrosivo y libre de sustancias tóxicas.
+        * **Tecnología BIOFORM y Anti-slip:** Suela moldeada anatómicamente y patín que reduce drásticamente el riesgo de derrape.
         """)
         
         st.markdown("### Modelos de Entrega Inmediata")
@@ -294,22 +312,22 @@ if st.session_state.get("mostrar_formulario", False):
         with cat1:
             st.image("Industrial 1.png", use_container_width=True)
             st.markdown("**Mod. 142002 | Dama**")
-            st.caption("PROT: PP+D")
+            st.caption("PROT: PP+D | Flexi PRO")
             
         with cat2:
             st.image("Industrial 2.png", use_container_width=True)
             st.markdown("**Mod. 141902 | Dama**")
-            st.caption("PROT: PP+D")
+            st.caption("PROT: PP+D | Flexi PRO")
             
         with cat3:
             st.image("Industrial 3.png", use_container_width=True)
             st.markdown("**Mod. 424703 | Caballero**")
-            st.caption("PROT: PP+D")
+            st.caption("PROT: PP+D | Flexi PRO")
             
         with cat4:
             st.image("Industrial 4.png", use_container_width=True)
             st.markdown("**Mod. 424902 | Caballero**")
-            st.caption("PROT: PP+D")
+            st.caption("PROT: PP+D | Flexi PRO")
         
         st.markdown("---")
 
@@ -320,7 +338,7 @@ if st.session_state.get("mostrar_formulario", False):
             <div class="form-subtitle">
                 Línea seleccionada: <strong>{linea}</strong>
                 <br>
-                Completa tus datos y nuestro equipo podrá dar seguimiento a tu requerimiento.
+                Completa tus datos y un especialista corporativo te contactará a la brevedad.
             </div>
         </div>
         """,
@@ -361,7 +379,7 @@ if st.session_state.get("mostrar_formulario", False):
                 placeholder="Ej. Guadalajara, Jal."
             )
 
-        st.markdown("### 2. Necesidad")
+        st.markdown("### 2. Necesidad del proyecto")
 
         c3, c4 = st.columns(2)
 
@@ -370,37 +388,35 @@ if st.session_state.get("mostrar_formulario", False):
                 "Volumen aproximado",
                 [
                     "Seleccionar",
-                    "1–20 pares",
-                    "21–50 pares",
-                    "51–100 pares",
-                    "101–500 pares",
+                    "1 a 20 pares",
+                    "21 a 50 pares",
+                    "51 a 100 pares",
+                    "101 a 500 pares",
                     "Más de 500 pares",
-                    "Compra recurrente"
+                    "Abastecimiento recurrente"
                 ]
             )
 
         with c4:
             necesidad = st.selectbox(
-                "¿Qué necesitas?",
+                "¿Qué requieres en este momento?",
                 [
                     "Seleccionar",
-                    "Catálogo",
-                    "Cotización",
-                    "Muestra",
-                    "Compra inicial",
-                    "Abastecimiento recurrente",
+                    "Cotización formal",
+                    "Catálogo completo",
+                    "Muestra física",
                     "Información general"
                 ]
             )
 
         tallas = st.text_input(
-            "Tallas requeridas",
-            placeholder="Ej. 24 a 29 / surtido mixto"
+            "Curva de tallas (Opcional)",
+            placeholder="Ej. 24 a 29 / Surtido mixto"
         )
 
         comentario = st.text_area(
-            "Cuéntanos qué necesitas",
-            placeholder="Describe brevemente tu requerimiento..."
+            "Detalles adicionales",
+            placeholder="Describe brevemente las necesidades de tu planta o personal..."
         )
 
         acepto = st.checkbox(
@@ -408,7 +424,7 @@ if st.session_state.get("mostrar_formulario", False):
         )
 
         enviar = st.form_submit_button(
-            "ENVIAR SOLICITUD",
+            "ENVIAR SOLICITUD CORPORATIVA",
             use_container_width=True,
             type="primary"
         )
@@ -474,18 +490,18 @@ if st.session_state.get("solicitud_enviada", False):
     datos = st.session_state["ultima_solicitud"]
 
     st.success(
-        "Solicitud registrada correctamente. Gracias por contactar a Equipa Tus Pasos."
+        "Solicitud registrada correctamente. Un especialista de Equipa Tus Pasos te contactará a la brevedad."
     )
 
     st.markdown(
         f"""
         <div class="summary">
-            <strong>Resumen de tu solicitud</strong><br><br>
+            <strong>Resumen de tu solicitud corporativa</strong><br><br>
             <b>Empresa:</b> {datos["empresa"]}<br>
             <b>Contacto:</b> {datos["contacto"]}<br>
-            <b>Línea:</b> {datos["linea"]}<br>
-            <b>Necesidad:</b> {datos["necesidad"]}<br>
-            <b>Volumen:</b> {datos["volumen"]}<br>
+            <b>Línea de Interés:</b> {datos["linea"]}<br>
+            <b>Requerimiento:</b> {datos["necesidad"]}<br>
+            <b>Volumen Estimado:</b> {datos["volumen"]}<br>
             <b>Ubicación:</b> {datos["ciudad"] or "No indicada"}
         </div>
         """,
@@ -501,11 +517,11 @@ if st.session_state.get("solicitud_enviada", False):
         st.rerun()
 
 # ============================================================
-# PIE
+# PIE DE PÁGINA
 # ============================================================
 
 st.markdown("""
 <div class="footer">
-    Equipa Tus Pasos · Soluciones B2B de calzado · Zona Occidente
+    Equipa Tus Pasos · Soluciones B2B de calzado corporativo · Zona Occidente
 </div>
 """, unsafe_allow_html=True)
