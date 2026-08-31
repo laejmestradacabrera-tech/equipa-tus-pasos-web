@@ -1,153 +1,478 @@
 import streamlit as st
+import pandas as pd
+from datetime import datetime
+from pathlib import Path
 
-# --- CONFIGURACIÓN DE LA PÁGINA ---
-# Esto debe ser siempre la primera línea de Streamlit
+# ============================================================
+# EQUIPA TUS PASOS | PORTAL B2B
+# VERSIÓN 1.0 — CAPTACIÓN COMERCIAL
+# ============================================================
+
 st.set_page_config(
     page_title="Equipa Tus Pasos | B2B",
-    page_icon="🏭",
+    page_icon="👟",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="collapsed",
 )
 
-# --- ESTILOS CSS PERSONALIZADOS ---
-# Aquí le damos el look corporativo, limpio y moderno
+# ============================================================
+# CONFIGURACIÓN
+# ============================================================
+
+ARCHIVO_SOLICITUDES = Path("solicitudes_b2b.csv")
+
+# ============================================================
+# CSS
+# ============================================================
+
 st.markdown("""
-    <style>
-    /* Ocultar el menú superior y el footer por defecto de Streamlit */
+<style>
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
-    
-    /* Espaciado del contenedor principal */
+
     .block-container {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        max-width: 1200px;
+        padding-top: 1.5rem;
+        padding-bottom: 3rem;
+        max-width: 1180px;
     }
-    
-    /* Estilos del Encabezado (Hero Section) */
-    .hero-container {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        padding: 60px 40px;
-        border-radius: 15px;
+
+    .hero {
+        background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        border-radius: 24px;
+        padding: 58px 35px;
         text-align: center;
         color: white;
-        margin-bottom: 40px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        box-shadow: 0 12px 30px rgba(0,0,0,.14);
+        margin-bottom: 35px;
     }
+
     .hero-title {
-        font-family: 'Arial Black', sans-serif;
-        font-size: 3rem;
-        margin-bottom: 10px;
-        line-height: 1.2;
+        font-size: clamp(2.2rem, 5vw, 4.2rem);
+        font-weight: 900;
+        line-height: 1.08;
+        letter-spacing: -1.5px;
+        margin-bottom: 18px;
     }
-    .hero-subtitle {
-        font-size: 1.2rem;
-        color: #94a3b8;
-        max-width: 800px;
-        margin: 0 auto 20px auto;
-    }
+
     .hero-highlight {
-        color: #eab308; /* Color amarillo oro/industrial */
+        color: #fbbf24;
     }
-    
-    /* Estilos de las Tarjetas de la Vitrina */
-    .catalog-card {
-        background-color: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        padding: 30px;
-        text-align: center;
-        height: 100%;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        transition: transform 0.3s ease;
+
+    .hero-subtitle {
+        max-width: 850px;
+        margin: auto;
+        color: #cbd5e1;
+        font-size: 1.08rem;
+        line-height: 1.65;
     }
-    .catalog-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-    }
-    .card-icon {
-        font-size: 3rem;
-        margin-bottom: 15px;
-    }
-    .card-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #0f172a;
-        margin-bottom: 15px;
-    }
-    .card-text {
-        color: #64748b;
-        font-size: 1rem;
-        margin-bottom: 20px;
-        line-height: 1.5;
-    }
-    
-    /* Títulos de sección */
+
     .section-title {
         text-align: center;
-        color: #0f172a;
-        font-weight: 800;
-        margin-bottom: 30px;
         font-size: 2rem;
+        font-weight: 900;
+        color: #111827;
+        margin: 15px 0 28px 0;
     }
-    </style>
+
+    .catalog-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 22px;
+        padding: 30px;
+        min-height: 370px;
+        box-shadow: 0 5px 15px rgba(15,23,42,.07);
+        transition: all .25s ease;
+    }
+
+    .catalog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(15,23,42,.11);
+    }
+
+    .industrial {
+        border-top: 5px solid #111827;
+    }
+
+    .clinical {
+        border-top: 5px solid #38bdf8;
+    }
+
+    .card-icon {
+        font-size: 3rem;
+        margin-bottom: 12px;
+    }
+
+    .card-title {
+        font-size: 1.45rem;
+        font-weight: 900;
+        color: #111827;
+        margin-bottom: 12px;
+    }
+
+    .card-text {
+        color: #64748b;
+        line-height: 1.6;
+        margin-bottom: 18px;
+    }
+
+    .benefit {
+        color: #475569;
+        margin: 7px 0;
+        font-size: .95rem;
+    }
+
+    .benefit span {
+        color: #16a34a;
+        font-weight: 900;
+        margin-right: 7px;
+    }
+
+    .form-box {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 22px;
+        padding: 28px;
+        box-shadow: 0 6px 18px rgba(15,23,42,.06);
+        margin-top: 10px;
+    }
+
+    .form-title {
+        font-size: 1.65rem;
+        font-weight: 900;
+        color: #111827;
+        margin-bottom: 4px;
+    }
+
+    .form-subtitle {
+        color: #64748b;
+        margin-bottom: 20px;
+    }
+
+    .summary {
+        background: #f8fafc;
+        border-left: 4px solid #fbbf24;
+        padding: 18px;
+        border-radius: 12px;
+        margin-top: 20px;
+    }
+
+    .footer {
+        text-align: center;
+        color: #94a3b8;
+        font-size: .85rem;
+        padding: 30px 0 10px 0;
+    }
+
+    div.stButton > button {
+        border-radius: 11px;
+        font-weight: 800;
+        min-height: 46px;
+    }
+</style>
 """, unsafe_allow_html=True)
 
+# ============================================================
+# FUNCIONES
+# ============================================================
 
-# --- 1. ENCABEZADO (HERO SECTION) ---
+def guardar_solicitud(datos):
+    nuevo = pd.DataFrame([datos])
+
+    if ARCHIVO_SOLICITUDES.exists():
+        try:
+            anterior = pd.read_csv(ARCHIVO_SOLICITUDES)
+            nuevo = pd.concat([anterior, nuevo], ignore_index=True)
+        except Exception:
+            pass
+
+    nuevo.to_csv(ARCHIVO_SOLICITUDES, index=False, encoding="utf-8-sig")
+
+
+def seleccionar_linea(linea):
+    st.session_state["linea"] = linea
+    st.session_state["mostrar_formulario"] = True
+
+
+# ============================================================
+# HERO
+# ============================================================
+
 st.markdown("""
-    <div class="hero-container">
-        <div class="hero-title">Equipamos a tu empresa <span class="hero-highlight">paso a paso</span></div>
-        <div class="hero-subtitle">Distribución mayorista especializada en calzado industrial y de servicio. Atención corporativa con cobertura inmediata y entregas estratégicas en toda la Zona Occidente.</div>
+<div class="hero">
+    <div class="hero-title">
+        Equipamos a tu empresa
+        <span class="hero-highlight">paso a paso</span>
     </div>
+    <div class="hero-subtitle">
+        Distribución mayorista especializada en calzado industrial y de servicio.
+        Atención corporativa, cobertura en Zona Occidente y soluciones de calzado
+        para las necesidades de tu empresa.
+    </div>
+</div>
 """, unsafe_allow_html=True)
 
+# ============================================================
+# LÍNEAS DE ESPECIALIDAD
+# ============================================================
 
-# --- 2. VITRINA DUAL (CATÁLOGOS) ---
-st.markdown('<div class="section-title">Nuestras Líneas de Especialidad</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="section-title">Nuestras Líneas de Especialidad</div>',
+    unsafe_allow_html=True
+)
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(2, gap="large")
 
 with col1:
     st.markdown("""
-        <div class="catalog-card">
-            <div class="card-icon">👷‍♂️</div>
-            <div class="card-title">Línea Industrial y Seguridad</div>
-            <div class="card-text">
-                Calzado robusto diseñado para soportar las jornadas más exigentes en fábricas, almacenes y construcción. 
-                <br><br>
-                <b>Beneficios Clave:</b><br>
-                ✓ Casquillo de protección normado.<br>
-                ✓ Suelas antiderrapantes y resistentes a aceites.<br>
-                ✓ Materiales dieléctricos (modelos seleccionados).<br>
-                ✓ Alta durabilidad y confort para jornadas de 8+ horas.
-            </div>
+    <div class="catalog-card industrial">
+        <div class="card-icon">👷</div>
+        <div class="card-title">Línea Industrial y Seguridad</div>
+        <div class="card-text">
+            Calzado diseñado para ambientes de trabajo exigentes,
+            con enfoque en protección, durabilidad y confort.
         </div>
+        <div class="benefit"><span>✓</span> Opciones con protección en puntera.</div>
+        <div class="benefit"><span>✓</span> Suelas antiderrapantes.</div>
+        <div class="benefit"><span>✓</span> Opciones resistentes a diferentes ambientes de trabajo.</div>
+        <div class="benefit"><span>✓</span> Modelos para jornadas prolongadas.</div>
+    </div>
     """, unsafe_allow_html=True)
-    # Botón nativo de Streamlit
-    if st.button("Solicitar Catálogo Industrial", use_container_width=True, type="primary"):
-        st.success("¡Excelente! Desplázate al formulario inferior para cotizar tu calzado industrial.")
+
+    if st.button(
+        "Solicitar Catálogo Industrial",
+        key="btn_industrial",
+        use_container_width=True,
+        type="primary"
+    ):
+        seleccionar_linea("Industrial y Seguridad")
 
 with col2:
     st.markdown("""
-        <div class="catalog-card" style="border-top: 4px solid #38bdf8;">
-            <div class="card-icon">👩‍⚕️</div>
-            <div class="card-title">Línea Clínica y de Servicio</div>
-            <div class="card-text">
-                Ergonomía superior para profesionales de la salud, laboratorios, clínicas y personal de servicio en constante movimiento.
-                <br><br>
-                <b>Beneficios Clave:</b><br>
-                ✓ Diseño ultra ligero y anatómico.<br>
-                ✓ Pieles suaves y de fácil limpieza (Modelos blancos).<br>
-                ✓ Sistema de absorción de impacto en talón.<br>
-                ✓ Confort extremo para evitar fatiga en jornadas de guardia.
+    <div class="catalog-card clinical">
+        <div class="card-icon">👩‍⚕️</div>
+        <div class="card-title">Línea Clínica y de Servicio</div>
+        <div class="card-text">
+            Soluciones de calzado enfocadas en comodidad, ligereza
+            y funcionalidad para profesionales en constante movimiento.
+        </div>
+        <div class="benefit"><span>✓</span> Diseños ligeros y anatómicos.</div>
+        <div class="benefit"><span>✓</span> Materiales de fácil limpieza en modelos seleccionados.</div>
+        <div class="benefit"><span>✓</span> Opciones con absorción de impacto.</div>
+        <div class="benefit"><span>✓</span> Confort para jornadas prolongadas.</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    if st.button(
+        "Solicitar Catálogo Clínico",
+        key="btn_clinical",
+        use_container_width=True
+    ):
+        seleccionar_linea("Clínica y de Servicio")
+
+# ============================================================
+# FORMULARIO
+# ============================================================
+
+if st.session_state.get("mostrar_formulario", False):
+
+    st.markdown("---")
+
+    linea = st.session_state.get("linea", "No seleccionada")
+
+    st.markdown(
+        f"""
+        <div class="form-box">
+            <div class="form-title">Solicita información comercial</div>
+            <div class="form-subtitle">
+                Línea seleccionada: <strong>{linea}</strong>
+                <br>
+                Completa tus datos y nuestro equipo podrá dar seguimiento a tu requerimiento.
             </div>
         </div>
-    """, unsafe_allow_html=True)
-    if st.button("Solicitar Catálogo Clínico", use_container_width=True, type="secondary"):
-        st.info("¡Excelente! Desplázate al formulario inferior para cotizar tu calzado de servicio.")
+        """,
+        unsafe_allow_html=True
+    )
 
-# --- 3. SECCIÓN EN CONSTRUCCIÓN (Para el siguiente paso) ---
-st.markdown("---")
-st.markdown("<div style='text-align:center; color:#94a3b8;'>Formulario de Captación B2B y Lógica Logística (Próximamente)</div>", unsafe_allow_html=True)
+    with st.form("formulario_b2b", clear_on_submit=False):
+
+        st.markdown("### 1. Datos de la empresa")
+
+        c1, c2 = st.columns(2)
+
+        with c1:
+            empresa = st.text_input(
+                "Empresa *",
+                placeholder="Nombre de la empresa"
+            )
+            contacto = st.text_input(
+                "Nombre del contacto *",
+                placeholder="Nombre completo"
+            )
+            puesto = st.text_input(
+                "Puesto",
+                placeholder="Compras, RH, Seguridad, etc."
+            )
+
+        with c2:
+            telefono = st.text_input(
+                "Teléfono / WhatsApp *",
+                placeholder="10 dígitos"
+            )
+            correo = st.text_input(
+                "Correo electrónico *",
+                placeholder="nombre@empresa.com"
+            )
+            ciudad = st.text_input(
+                "Ciudad / ubicación",
+                placeholder="Ej. Guadalajara, Jal."
+            )
+
+        st.markdown("### 2. Necesidad")
+
+        c3, c4 = st.columns(2)
+
+        with c3:
+            volumen = st.selectbox(
+                "Volumen aproximado",
+                [
+                    "Seleccionar",
+                    "1–20 pares",
+                    "21–50 pares",
+                    "51–100 pares",
+                    "101–500 pares",
+                    "Más de 500 pares",
+                    "Compra recurrente"
+                ]
+            )
+
+        with c4:
+            necesidad = st.selectbox(
+                "¿Qué necesitas?",
+                [
+                    "Seleccionar",
+                    "Catálogo",
+                    "Cotización",
+                    "Muestra",
+                    "Compra inicial",
+                    "Abastecimiento recurrente",
+                    "Información general"
+                ]
+            )
+
+        tallas = st.text_input(
+            "Tallas requeridas",
+            placeholder="Ej. 24 a 29 / surtido mixto"
+        )
+
+        comentario = st.text_area(
+            "Cuéntanos qué necesitas",
+            placeholder="Describe brevemente tu requerimiento..."
+        )
+
+        acepto = st.checkbox(
+            "Confirmo que los datos proporcionados son correctos."
+        )
+
+        enviar = st.form_submit_button(
+            "ENVIAR SOLICITUD",
+            use_container_width=True,
+            type="primary"
+        )
+
+    if enviar:
+        errores = []
+
+        if not empresa.strip():
+            errores.append("Ingresa el nombre de la empresa.")
+
+        if not contacto.strip():
+            errores.append("Ingresa el nombre del contacto.")
+
+        if not telefono.strip():
+            errores.append("Ingresa un teléfono o WhatsApp.")
+
+        if not correo.strip():
+            errores.append("Ingresa un correo electrónico.")
+
+        if volumen == "Seleccionar":
+            errores.append("Selecciona un volumen aproximado.")
+
+        if necesidad == "Seleccionar":
+            errores.append("Selecciona el tipo de requerimiento.")
+
+        if not acepto:
+            errores.append("Confirma que los datos son correctos.")
+
+        if errores:
+            for error in errores:
+                st.error(error)
+        else:
+            datos = {
+                "fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "linea": linea,
+                "empresa": empresa.strip(),
+                "contacto": contacto.strip(),
+                "puesto": puesto.strip(),
+                "telefono": telefono.strip(),
+                "correo": correo.strip(),
+                "ciudad": ciudad.strip(),
+                "volumen": volumen,
+                "necesidad": necesidad,
+                "tallas": tallas.strip(),
+                "comentario": comentario.strip(),
+            }
+
+            try:
+                guardar_solicitud(datos)
+
+                st.session_state["solicitud_enviada"] = True
+                st.session_state["ultima_solicitud"] = datos
+
+            except Exception as e:
+                st.error(f"No fue posible registrar la solicitud: {e}")
+
+# ============================================================
+# CONFIRMACIÓN
+# ============================================================
+
+if st.session_state.get("solicitud_enviada", False):
+
+    datos = st.session_state["ultima_solicitud"]
+
+    st.success(
+        "Solicitud registrada correctamente. Gracias por contactar a Equipa Tus Pasos."
+    )
+
+    st.markdown(
+        f"""
+        <div class="summary">
+            <strong>Resumen de tu solicitud</strong><br><br>
+            <b>Empresa:</b> {datos["empresa"]}<br>
+            <b>Contacto:</b> {datos["contacto"]}<br>
+            <b>Línea:</b> {datos["linea"]}<br>
+            <b>Necesidad:</b> {datos["necesidad"]}<br>
+            <b>Volumen:</b> {datos["volumen"]}<br>
+            <b>Ubicación:</b> {datos["ciudad"] or "No indicada"}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    if st.button(
+        "Realizar otra solicitud",
+        use_container_width=True
+    ):
+        st.session_state["solicitud_enviada"] = False
+        st.session_state["mostrar_formulario"] = False
+        st.rerun()
+
+# ============================================================
+# PIE
+# ============================================================
+
+st.markdown("""
+<div class="footer">
+    Equipa Tus Pasos · Soluciones B2B de calzado · Zona Occidente
+</div>
+""", unsafe_allow_html=True)
