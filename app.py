@@ -6,7 +6,7 @@ import base64
 
 # ============================================================
 # EQUIPA TUS PASOS | PORTAL B2B
-# VERSIÓN 2.0 — SEO Y CATÁLOGO INTEGRADO
+# VERSIÓN 2.5 — CONTACTO DIRECTO SIN FRICCIÓN
 # ============================================================
 
 # Optimización SEO #1: Título de página con palabras clave de alto impacto
@@ -213,7 +213,6 @@ def guardar_solicitud(datos):
 
     nuevo.to_csv(ARCHIVO_SOLICITUDES, index=False, encoding="utf-8-sig")
 
-
 def seleccionar_linea(linea):
     st.session_state["linea"] = linea
     st.session_state["mostrar_formulario"] = True
@@ -262,7 +261,7 @@ with st.expander("CONSULTAR CATÁLOGO COMPLETO OI", expanded=False):
         pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
     except Exception:
-        st.info("El catálogo virtual se está actualizando. Solicítalo directamente vía WhatsApp o en el formulario inferior.")
+        st.info("El catálogo virtual se está actualizando. Solicítalo directamente vía telefónica o en el formulario inferior.")
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -329,7 +328,6 @@ with col2:
 if st.session_state.get("mostrar_formulario", False):
 
     st.markdown("---")
-
     linea = st.session_state.get("linea", "No seleccionada")
 
     # Inyección de Catálogo Flexi PRO Industrial
@@ -381,15 +379,28 @@ if st.session_state.get("mostrar_formulario", False):
         
         st.markdown("---")
 
-    # Botón de Contacto Rápido (WhatsApp)
+    # Contacto Directo Cero Fricción (Atención y Tienda)
     st.markdown(
         """
         <div style="background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 25px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-            <h3 style="color: #111827; margin-bottom: 10px;">¿Prefieres atención inmediata y directa?</h3>
-            <p style="color: #64748b; margin-bottom: 20px;">Si deseas omitir el formulario, envíanos un mensaje y un especialista corporativo te atenderá en este momento.</p>
-            <a href="https://wa.me/4773949916" target="_blank" style="background-color: #25d366; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 900; display: inline-block;">
-                CONTACTAR POR WHATSAPP
-            </a>
+            <h3 style="color: #111827; margin-bottom: 10px; font-weight: 900;">¿Prefieres atención directa?</h3>
+            <p style="color: #64748b; margin-bottom: 20px;">Si deseas omitir el formulario, comunícate a nuestras líneas corporativas:</p>
+            
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <!-- Tarjeta Atención Especializada -->
+                <div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0; min-width: 250px;">
+                    <p style="margin: 0; color: #64748b; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Atención Especializada</p>
+                    <p style="margin: 5px 0 0 0; color: #b91c1c; font-size: 1.45rem; font-weight: 900;">(33) XXXX-XXXX</p>
+                    <p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">Directo / WhatsApp</p>
+                </div>
+                
+                <!-- Tarjeta Administración y Tienda -->
+                <div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0; min-width: 250px;">
+                    <p style="margin: 0; color: #64748b; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Administración y Tienda</p>
+                    <p style="margin: 5px 0 0 0; color: #111827; font-size: 1.45rem; font-weight: 900;">(33) XXXX-XXXX</p>
+                    <p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">Operaciones y Sucursal</p>
+                </div>
+            </div>
         </div>
         """,
         unsafe_allow_html=True
@@ -498,22 +509,16 @@ if st.session_state.get("mostrar_formulario", False):
 
         if not empresa.strip():
             errores.append("Ingresa el nombre de la empresa.")
-
         if not contacto.strip():
             errores.append("Ingresa el nombre del contacto.")
-
         if not telefono.strip():
             errores.append("Ingresa un teléfono o WhatsApp.")
-
         if not correo.strip():
             errores.append("Ingresa un correo electrónico.")
-
         if volumen == "Seleccionar":
             errores.append("Selecciona un volumen aproximado.")
-
         if necesidad == "Seleccionar":
             errores.append("Selecciona el tipo de requerimiento.")
-
         if not acepto:
             errores.append("Confirma que los datos son correctos.")
 
@@ -538,10 +543,8 @@ if st.session_state.get("mostrar_formulario", False):
 
             try:
                 guardar_solicitud(datos)
-
                 st.session_state["solicitud_enviada"] = True
                 st.session_state["ultima_solicitud"] = datos
-
             except Exception as e:
                 st.error(f"No fue posible registrar la solicitud: {e}")
 
@@ -550,13 +553,10 @@ if st.session_state.get("mostrar_formulario", False):
 # ============================================================
 
 if st.session_state.get("solicitud_enviada", False):
-
     datos = st.session_state["ultima_solicitud"]
-
     st.success(
         "Solicitud registrada correctamente. Un especialista de Equipa Tus Pasos te contactará a la brevedad."
     )
-
     st.markdown(
         f"""
         <div class="summary">
@@ -571,7 +571,6 @@ if st.session_state.get("solicitud_enviada", False):
         """,
         unsafe_allow_html=True
     )
-
     if st.button(
         "Realizar otra solicitud",
         use_container_width=True
