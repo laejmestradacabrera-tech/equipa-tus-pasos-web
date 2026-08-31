@@ -387,7 +387,7 @@ if st.session_state.get("mostrar_formulario", False):
 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
 <div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0; min-width: 250px;">
 <p style="margin: 0; color: #64748b; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Atención Especializada</p>
-<p style="margin: 5px 0 0 0; color: #b91c1c; font-size: 1.45rem; font-weight: 900;">(33) XXXX-XXXX</p>
+<p style="margin: 5px 0 0 0; color: #b91c1c; font-size: 1.45rem; font-weight: 900;">(47) 7394-9916</p>
 <p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">Directo / WhatsApp</p>
 </div>
 <div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0; min-width: 250px;">
