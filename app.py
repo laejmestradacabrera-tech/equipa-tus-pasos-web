@@ -10,7 +10,6 @@ from pathlib import Path
 
 st.set_page_config(
     page_title="Equipa Tus Pasos | B2B",
-    page_icon="👟",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -226,7 +225,6 @@ col1, col2 = st.columns(2, gap="large")
 with col1:
     st.markdown("""
     <div class="catalog-card industrial">
-        <div class="card-icon">👷</div>
         <div class="card-title">Línea Industrial y Seguridad</div>
         <div class="card-text">
             Calzado diseñado para ambientes de trabajo exigentes,
@@ -250,7 +248,6 @@ with col1:
 with col2:
     st.markdown("""
     <div class="catalog-card clinical">
-        <div class="card-icon">👩‍⚕️</div>
         <div class="card-title">Línea Clínica y de Servicio</div>
         <div class="card-text">
             Soluciones de calzado enfocadas en comodidad, ligereza
@@ -282,7 +279,7 @@ if st.session_state.get("mostrar_formulario", False):
 
     # Inyección de Catálogo Industrial
     if linea == "Industrial y Seguridad":
-        st.markdown("## 🛡️ Ingeniería y Protección Total para tu Plantilla")
+        st.markdown("## Ingeniería y Protección Total para tu Plantilla")
         st.markdown("""
         *Cumplimiento estricto con **NOM-113-STPS-2009** y **NOM-017-STPS-2024**.*
         * **Protección Dieléctrica:** Aislante especializado de alta fiabilidad.
