@@ -22,3 +22,29 @@ if (quoteForm) {
     window.location.href = `mailto:${recipients}?subject=${subject}&body=${body}`;
   });
 }
+
+const lightbox = document.getElementById('product-lightbox');
+if (lightbox) {
+  const enlargedImage = lightbox.querySelector('img');
+  const caption = lightbox.querySelector('p');
+  const closeButton = lightbox.querySelector('.lightbox-close');
+
+  document.querySelectorAll('[data-enlarge]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const image = button.querySelector('img');
+      const card = button.closest('.product');
+      enlargedImage.src = image.currentSrc || image.src;
+      enlargedImage.alt = image.alt;
+      caption.textContent = card.querySelector('h3').textContent;
+      lightbox.showModal();
+    });
+  });
+
+  closeButton.addEventListener('click', () => lightbox.close());
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+  lightbox.addEventListener('close', () => {
+    enlargedImage.removeAttribute('src');
+  });
+}
