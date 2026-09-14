@@ -6,3 +6,5 @@
 .card-visual img{object-fit:cover;padding:0}.card-badge{position:absolute;top:18px;left:18px;background:#fff;padding:8px 12px;border-radius:6px;color:#a92939;text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:900}.product-image-button img{height:190px;object-fit:cover}.subhero .button{margin-top:10px}@media(max-width:1050px){.nav nav{gap:14px}.nav nav a{font-size:13px}}
 
 .product .product-price{color:#a92939;font-size:20px;font-weight:900;margin:8px 0}.product-price+.product-message{margin-top:12px}
+
+@media(max-width:600px){.nav nav{justify-content:flex-start;flex-wrap:wrap;column-gap:14px;row-gap:10px}.nav nav a{font-size:12px}}
