@@ -55,3 +55,34 @@ if (lightbox) {
     enlargedImage.removeAttribute('src');
   });
 }
+
+const filterableGrid = document.querySelector('[data-filterable-grid]');
+if (filterableGrid) {
+  const filterButtons = document.querySelectorAll('[data-gender-filter]');
+  const products = [...filterableGrid.querySelectorAll('.product[data-gender]')];
+  const filterStatus = document.querySelector('.filter-status');
+
+  const applyGenderFilter = (gender) => {
+    let visibleCount = 0;
+    products.forEach((product) => {
+      const isVisible = gender === 'all' || product.dataset.gender === gender;
+      product.hidden = !isVisible;
+      if (isVisible) visibleCount += 1;
+    });
+
+    filterButtons.forEach((button) => {
+      const isActive = button.dataset.genderFilter === gender;
+      button.classList.toggle('active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+
+    const label = gender === 'all' ? 'todos' : gender;
+    filterStatus.textContent = `${visibleCount} ${visibleCount === 1 ? 'modelo disponible' : 'modelos disponibles'} para ${label}.`;
+  };
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => applyGenderFilter(button.dataset.genderFilter));
+  });
+
+  applyGenderFilter('all');
+}
