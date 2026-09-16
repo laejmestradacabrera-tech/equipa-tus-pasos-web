@@ -16,3 +16,5 @@
 .industrial-sheet .product-image-button img{width:100%;height:auto!important;aspect-ratio:auto;object-fit:contain}
 
 .agreements .agreements-lead{color:#dfe6f2;font-size:clamp(19px,2vw,24px);font-weight:700;margin-top:-8px}
+
+.conditional-fields{display:contents}.conditional-fields[hidden]{display:none!important}
