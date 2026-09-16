@@ -14,3 +14,5 @@
 .hero-trust{max-width:690px;margin:18px 0 0;padding-left:15px;border-left:3px solid #f0a9b2;color:#fff;font-size:15px;font-weight:800;line-height:1.55}.catalog-filters{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 12px}.catalog-filters button{min-width:112px;border:1px solid #a92939;border-radius:999px;padding:11px 19px;background:#fff;color:#a92939;font:inherit;font-size:14px;font-weight:800;cursor:pointer}.catalog-filters button:hover,.catalog-filters button.active{background:#a92939;color:#fff}.catalog-filters button:focus-visible{outline:3px solid #17233a;outline-offset:3px}.catalog-filter-status{margin-bottom:28px}@media(max-width:600px){.catalog-filters{display:grid;grid-template-columns:1fr 1fr;gap:8px}.catalog-filters button{min-width:0;width:100%;padding:10px 8px}}
 
 .industrial-sheet .product-image-button img{width:100%;height:auto!important;aspect-ratio:auto;object-fit:contain}
+
+.agreements .agreements-lead{color:#dfe6f2;font-size:clamp(19px,2vw,24px);font-weight:700;margin-top:-8px}
