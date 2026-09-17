@@ -12,6 +12,9 @@ if (quoteForm) {
   const roleField = document.getElementById('role');
   const organizationTypeField = document.getElementById('organization_type');
   const cityLabel = document.getElementById('city-label');
+  const cityField = document.getElementById('city');
+  const otherCityContainer = document.getElementById('other-city-field');
+  const otherCityField = document.getElementById('other_city');
   const detailsLabel = document.getElementById('details-label');
   const detailsField = document.getElementById('details');
 
@@ -27,10 +30,14 @@ if (quoteForm) {
     detailsLabel.textContent = isAgreement ? 'Observaciones del convenio' : 'Detalles de la solicitud';
     detailsField.placeholder = isAgreement
       ? 'Comparte alguna necesidad u observación sobre el convenio.'
-      : 'Si elegiste Otra ciudad, incluye aquí ciudad y estado.';
+      : 'Comparte modelos, tallas u otra información relevante.';
+    const isOtherCity = cityField.value === 'Otra ciudad';
+    otherCityContainer.hidden = !isOtherCity;
+    otherCityField.required = isOtherCity;
   };
 
   requestType.addEventListener('change', updateConditionalFields);
+  cityField.addEventListener('change', updateConditionalFields);
   updateConditionalFields();
 
   quoteForm.addEventListener('submit', async (event) => {
@@ -82,4 +89,18 @@ if (lightbox) {
   lightbox.addEventListener('close', () => {
     enlargedImage.removeAttribute('src');
   });
+}
+
+const animatedSections = document.querySelectorAll('.section');
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.body.classList.add('reveal-ready');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        sectionObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  animatedSections.forEach((section) => sectionObserver.observe(section));
 }
